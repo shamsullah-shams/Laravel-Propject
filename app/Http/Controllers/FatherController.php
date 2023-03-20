@@ -37,9 +37,11 @@ class FatherController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
+            'user_id' => 'required|string|max:20',
         ]);
 
         $father = Father::create($validatedData);

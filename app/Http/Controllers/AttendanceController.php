@@ -37,9 +37,8 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students',
-            'phone' => 'required|string|max:20',
+            'status' => 'required|boolean',
+            'student_id' => 'required|string|max:255',
         ]);
 
         $attendance = Attendance::create($validatedData);

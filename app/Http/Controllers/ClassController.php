@@ -38,8 +38,6 @@ class ClassController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students',
-            'phone' => 'required|string|max:20',
         ]);
 
         $singleClass = ClassModel::create($validatedData);
