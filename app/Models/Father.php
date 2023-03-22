@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Father extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = array('first_name', 'last_name', 'phone', 'user_id');
+    protected $guarded = []; 
 }

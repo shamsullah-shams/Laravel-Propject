@@ -1,108 +1,63 @@
-@extends('layouts.app')
+@extends('./dashboard')
 
 @section('content')
-    <h1>Register Student</h1>
-    <form action="{{ route('students.store') }}" method="POST">
+    <form method="POST" action="{{ route('students.store') }}" class="Custom_Form">
         @csrf
+
+        <!-- first_name -->
         <div>
-            <label for="first_name">first_name:</label>
-            <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}">
-            @error('name')
-                <div>{{ $message }}</div>
-            @enderror
+            <label for="first_name">First Name:</label>
+            <input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')"  autofocus autocomplete="first_name" />
+            <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
         </div>
-        <div>
-            <label for="last_name">last_name:</label>
-            <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}">
-            @error('email')
-                <div>{{ $message }}</div>
-            @enderror
+
+        <!-- Email Address -->
+        <div class="mt-4">
+        <label for="last_name">Last Name:</label>
+            <input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')"  autocomplete="last_name" />
+            <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
         </div>
-        <div>
-            <label for="father_id">Father ID</label>
-            <select value="father_id">
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
+
+        <!-- father id -->
+        <div class="mt-4">
+        <label for="father_id">Father Name:</label>
+            <select name="father_id" id="father_id">
+                <option value=""></option>
+                @foreach($fathers as $father) 
+                    <option value="{{$father->id}}">{{$father->first_name}}</option>
+                @endforeach
             </select>
+            <x-input-error :messages="$errors->get('father_id')" class="mt-2" />
         </div>
-        <div>
-            <label for="user_id">User ID</label>
-            <select value="user_id">
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
+
+        <!-- section id -->
+        <div class="mt-4">
+        <label for="section_id">Section:</label>
+            <select name="section_id" id="section_id">
+                <option value=""></option>
+                @foreach($sections as $section) 
+                    <option value="{{$section->id}}">{{$section->name}}</option>
+                @endforeach
             </select>
+            <x-input-error :messages="$errors->get('section_id')" class="mt-2" />
         </div>
-        <div>
-            <label for="section_id">Section ID</label>
-            <select value="section_id">
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-            </select>
+
+        <div class="mt-4">
+        <label for="image">image:</label>
+            <input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" />
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
-        <button type="submit">Create</button>
+
+        <div class="flex items-center justify-end mt-4">
+            <x-primary-button class="ml-4">
+                {{ __('Register') }}
+            </x-primary-button>
+        </div>
     </form>
-    <a href="{{ route('students.index') }}">Back</a>
+
+    <div class="Back_Button_div">
+        <a href="{{ route('students.index') }}" class="Back_Button">Back</a>
+    </div>
 @endsection
 
 
-
-@section('styles')
-    <style>
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        div {
-            margin-bottom: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        label {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        input[type="text"],
-        input[type="email"] {
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            border: 1px solid #ccc;
-            width: 100%;
-        }
-
-        button[type="submit"],
-        a.button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 1rem;
-        }
-
-        button[type="submit"]:hover,
-        a.button:hover {
-            background-color: #0056b3;
-        }
-
-        .error {
-            color: #dc3545;
-            font-size: 0.8rem;
-            margin-top: 0.25rem;
-        }
-    </style>
-@endsection

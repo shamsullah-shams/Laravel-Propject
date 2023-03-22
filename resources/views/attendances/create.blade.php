@@ -1,31 +1,38 @@
-@extends('layouts.app')
+@extends('./dashboard')
 
 @section('content')
-    <h1>Create Student</h1>
-    <form action="{{ route('students.store') }}" method="POST">
+    <form method="POST" action="{{ route('attendance.store') }}" class="Custom_Form">
         @csrf
+
+        <!-- student_id -->
         <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}">
-            @error('name')
-                <div>{{ $message }}</div>
-            @enderror
+            <label for="attendance_status">Attendance status:</label>
+            <input id="attendance_status" class="block mt-1 w-full" type="checkbox" name="attendance_status" :value="old('attendance_status')"  autofocus />
+            <x-input-error :messages="$errors->get('attendance_status')" class="mt-2" />
         </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}">
-            @error('email')
-                <div>{{ $message }}</div>
-            @enderror
+
+        <!-- student id -->
+        <div class="mt-4">
+        <label for="student_id">student:</label>
+            <select name="student_id" id="student_id">
+                <option value=""></option>
+                @foreach($students as $student) 
+                    <option value="{{$student->id}}">{{$student->first_name . student->last_name}}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('student_id')" class="mt-2" />
         </div>
-        <div>
-            <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="phone" value="{{ old('phone') }}">
-            @error('phone')
-                <div>{{ $message }}</div>
-            @enderror
+
+        <div class="flex items-center justify-end mt-4">
+            <x-primary-button class="ml-4">
+                {{ __('Create') }}
+            </x-primary-button>
         </div>
-        <button type="submit">Create</button>
     </form>
-    <a href="{{ route('students.index') }}">Back to Students</a>
+
+    <div class="Back_Button_div">
+        <a href="{{ route('attendance.index') }}" class="Back_Button">Back</a>
+    </div>
 @endsection
+
+

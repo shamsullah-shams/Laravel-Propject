@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Section;
+use App\Models\Father;
 
 class StudentController extends Controller
 {
@@ -25,7 +27,12 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $fathers = Father::all();
+        $sections = Section::all();
+        return view('students.create', [
+            'sections' => $sections,
+            'fathers' => $fathers,
+        ]);
     }
 
     /**
@@ -36,13 +43,21 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students',
-            'phone' => 'required|string|max:20',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'father_id' => 'required|numeric|max:255',
+            'section_id' => 'required|numeric|max:255',
         ]);
 
-        $student = Student::create($validatedData);
+        $student = new Student;
+        $student->first_name = $request->first_name;
+        $student->last_name = $request->last_name;
+        $student->father_id = $request->father_id;
+        $student->section_id = $request->section_id;
+
+        $student->save();
 
         return redirect()->route('students.show', $student->id);
     }
@@ -68,7 +83,8 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::find($id);
-        return view('students.edit', ['student' => $student]);
+        $sections = Section::all();
+        return view('students.edit', ['student' => $student, 'sections' => $sections]);
     }
 
     /**

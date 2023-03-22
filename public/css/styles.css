@@ -1,0 +1,84 @@
+.customNavigation {
+    display: flex;
+    width: 70%;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    margin: 1px auto;
+}
+
+.customNavigation>a:hover {
+    font-weight: bolder;
+    border-bottom: 1px solid white;
+}
+
+.Custom_Form {
+    width: 350px;
+    margin: 8px auto;
+}
+
+.Custom_Form input {
+    border-radius: 10px;
+}
+
+select {
+    width: 100%;
+    display: inline-block;
+    border-radius: 40px;
+}
+
+.Back_Button {
+    width: 90%;
+    background-color: rgb(80, 80, 243);
+    margin: 10px auto;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.Back_Button_div {
+    width: 200px;
+    margin: 10px auto;
+}
+
+.header_title {
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+    color: rgb(4, 4, 99);
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+td {
+    text-align: center;
+}
+
+.table_row {
+    /* width: 0%; */
+    border-bottom: 1px solid rgb(231, 227, 227);
+    border-top: 1px solid rgb(231, 227, 227);
+    /* min-height: 150px; */
+}
+
+.edit_inputs {
+    display: inline-block;
+    width: 100%;
+}
+
+.update_button {
+    width: 90%;
+    background-color: rgb(80, 80, 243);
+    margin: 10px auto;
+    text-align: center;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-align: center;
+}

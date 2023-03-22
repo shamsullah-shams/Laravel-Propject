@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Subject;
+use App\Models\Section;
 
 class SubjectController extends Controller
 {
@@ -25,7 +26,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('subjects.create');
+        $sections = Section::all();
+        return view('subjects.create' , ['sections' => $sections]);
     }
 
     /**
@@ -38,11 +40,16 @@ class SubjectController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:subjects',
-            'phone' => 'required|string|max:20',
+            'section_id' => 'required|numeric|max:255',
+            'teacher_id' => 'required|numeric|max:255',
         ]);
 
-        $student = Subject::create($validatedData);
+        $subject = new Subject;
+        $subject->name = $request->name;
+        $subject->section_id = $request->section_id;
+        $subject->teacher_id = $request->teacher_id;
+
+        $subject->save();
 
         return redirect()->route('subjects.show', $student->id);
     }

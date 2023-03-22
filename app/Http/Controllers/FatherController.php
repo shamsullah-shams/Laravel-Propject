@@ -7,7 +7,8 @@ use App\Models\Father;
 
 class FatherController extends Controller
 {
-        /**
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -41,11 +42,15 @@ class FatherController extends Controller
             'last_name' => 'required|string|max:255',
             'province' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
-            'user_id' => 'required|string|max:20',
         ]);
 
-        $father = Father::create($validatedData);
+        $father = new Father;
+        $father->first_name = $request->first_name;
+        $father->last_name = $request->last_name;
+        $father->province = $request->province;
+        $father->phone = $request->phone;
 
+        $father->save();
         return redirect()->route('fathers.show', $father->id);
     }
 

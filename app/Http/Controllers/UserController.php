@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Section;
-use App\Models\ClassModel;
 
-class SectionController extends Controller
+class UserController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $sections = Section::all();
-        return view('sections.index', ['sections' => $sections]);
+        //
     }
 
     /**
@@ -26,8 +23,7 @@ class SectionController extends Controller
      */
     public function create()
     {
-        $classes = ClassModel::all();
-        return view('sections.create', ['classes' => $classes]);
+        //
     }
 
     /**
@@ -38,18 +34,7 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'class_id' => 'required|numeric|max:255',
-        ]);
-
-        $section = new Section;
-        $section->name = $request->name;
-        $section->class_id = $request->class_id;
-
-        $section->save();
-
-        return redirect()->route('sections.show', $section->id);
+        //
     }
 
     /**
@@ -60,8 +45,7 @@ class SectionController extends Controller
      */
     public function show($id)
     {
-        $section = Section::find($id);
-        return view('sections.show', ['section' => $section]);
+        //
     }
 
     /**
@@ -72,8 +56,7 @@ class SectionController extends Controller
      */
     public function edit($id)
     {
-        $section = Section::find($id);
-        return view('sections.edit', ['section' => $section]);
+        //
     }
 
     /**
@@ -85,16 +68,7 @@ class SectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'string|max:255',
-            'email' => 'email|unique:students,email,' . $id,
-            'phone' => 'string|max:20',
-        ]);
-
-        $section = Section::find($id);
-        $section->update($validatedData);
-
-        return redirect()->route('sections.show', $id);
+        //
     }
 
     /**
@@ -105,9 +79,6 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        $section = Section::find($id);
-        $section->delete();
-
-        return redirect()->route('sections.index');
+        //
     }
 }

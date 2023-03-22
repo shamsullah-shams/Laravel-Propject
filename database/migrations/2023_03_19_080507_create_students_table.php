@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('last_name');
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->foreignId('father_id')->constrained('fathers')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

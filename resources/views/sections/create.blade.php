@@ -1,83 +1,37 @@
-@extends('layouts.app')
+@extends('./dashboard')
 
 @section('content')
-    <h1>Add Section</h1>
-    <form action="{{ route('sections.store') }}" method="POST">
+    <form method="POST" action="{{ route('sections.store') }}" class="Custom_Form">
         @csrf
+
+        <!-- section name -->
         <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}">
-            @error('name')
-                <div>{{ $message }}</div>
-            @enderror
+            <label for="name">Section Name:</label>
+            <input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"  autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
-        <div>
-            <label for="class_id">class</label>
-            <select value="class_id">
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
-                <option name="" id="">1</option>
+
+        <!-- class id -->
+        <div class="mt-4">
+        <label for="class_id">Class:</label>
+            <select name="class_id" id="class_id">
+                <option value=""></option>
+                @foreach($classes as $class) 
+                    <option value="{{$class->id}}">{{$class->name}}</option>
+                @endforeach
             </select>
+            <x-input-error :messages="$errors->get('class_id')" class="mt-2" />
         </div>
-        <button type="submit">Create</button>
+
+        <div class="flex items-center justify-end mt-4">
+            <x-primary-button class="ml-4">
+                {{ __('Create') }}
+            </x-primary-button>
+        </div>
     </form>
-    <a href="{{ route('sections.index') }}">Back</a>
+    <div class="Back_Button_div">
+        <a href="{{ route('sections.index') }}" class="Back_Button">Back</a>
+    </div>
 @endsection
 
 
-
-@section('styles')
-    <style>
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        div {
-            margin-bottom: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        label {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        input[type="text"],
-        input[type="email"] {
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            border: 1px solid #ccc;
-            width: 100%;
-        }
-
-        button[type="submit"],
-        a.button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 1rem;
-        }
-
-        button[type="submit"]:hover,
-        a.button:hover {
-            background-color: #0056b3;
-        }
-
-        .error {
-            color: #dc3545;
-            font-size: 0.8rem;
-            margin-top: 0.25rem;
-        }
-    </style>
-@endsection

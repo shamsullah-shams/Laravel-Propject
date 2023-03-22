@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Attendance;
+use App\Models\Student;
 
 class AttendanceController extends Controller
 {
@@ -25,7 +26,8 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        return view('attendances.create');
+        $students = Student::all();
+        return view('attendances.create', ['students' => $students]);
     }
 
     /**
@@ -41,7 +43,11 @@ class AttendanceController extends Controller
             'student_id' => 'required|string|max:255',
         ]);
 
-        $attendance = Attendance::create($validatedData);
+        $attendance = new Attendance;
+        $attendance->status = $request->status;
+        $attendance->student_id = $request->student_id;
+
+        $attendance->save();
 
         return redirect()->route('attendances.show', $attendance->id);
     }

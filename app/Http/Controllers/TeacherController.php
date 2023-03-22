@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Teacher;
+use App\Models\User;
 
 class TeacherController extends Controller
 {
@@ -25,7 +26,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('teachers.create');
+        $users = User::all();
+        return view('teachers.create', ['users' => $users]);
     }
 
     /**
@@ -37,12 +39,19 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
+            'user_id' => 'required|numeric|max:255',
         ]);
 
-        $teacher = Teacher::create($validatedData);
+        $teacher = new Teacher;
+        $teacher->first_name = $request->first_name;
+        $teacher->last_name = $request->last_name;
+        $teacher->phone = $request->phone;
+        $teacher->user_id = $request->user_id;
+        
+        $teacher->save();
 
         return redirect()->route('teachers.show', $teacher->id);
     }

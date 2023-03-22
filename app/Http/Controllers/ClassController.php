@@ -40,7 +40,10 @@ class ClassController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $singleClass = ClassModel::create($validatedData);
+        $singleClass = new ClassModel;
+        $singleClass->name = $request->name;
+
+        $singleClass->save();
 
         return redirect()->route('classes.show', $singleClass->id);
     }

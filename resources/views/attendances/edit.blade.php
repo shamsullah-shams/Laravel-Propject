@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('./dashboard')
 
 @section('content')
     <h1>Edit {{ $student->name }}</h1>
