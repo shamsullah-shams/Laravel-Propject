@@ -82,11 +82,9 @@ class ClassController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'string|max:255',
-            'email' => 'email|unique:students,email,' . $id,
-            'phone' => 'string|max:20',
+            'name' => 'required|string|max:255',
         ]);
-
+        
         $singleClass = ClassModel::find($id);
         $singleClass->update($validatedData);
 

@@ -1,7 +1,7 @@
 @extends('./dashboard')
 
 @section('content')
-    <form method="POST" action="{{ route('students.store') }}" class="Custom_Form">
+    <form method="POST" action="{{ route('students.store') }}" class="Custom_Form"  enctype="multipart/form-data">
         @csrf
 
         <!-- first_name -->

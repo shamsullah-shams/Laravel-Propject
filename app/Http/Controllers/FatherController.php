@@ -88,9 +88,10 @@ class FatherController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'string|max:255',
-            'email' => 'email|unique:students,email,' . $id,
-            'phone' => 'string|max:20',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
         ]);
 
         $father = Father::find($id);

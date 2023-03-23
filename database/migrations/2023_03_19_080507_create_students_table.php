@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->foreignId('father_id')->constrained('fathers')->onDelete('cascade');
+            $table->string('imageUrl');
             $table->timestamps();
         });
     }

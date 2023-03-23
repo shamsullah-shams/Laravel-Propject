@@ -43,19 +43,32 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
+        
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'father_id' => 'required|numeric|max:255',
             'section_id' => 'required|numeric|max:255',
+            'image' => 'required|file|image'
         ]);
+        if($request->hasFile('image')) {
+           $fileNameWithExt = $request->file('image')->getClientOriginalName();
+           $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+           $extension = $request->file('image')->getClientOriginalExtension();
+           $name = time().'.'.$extension;
+           $image = $request->file('image')->storeAs('public/students' , $name);
+           $imageUrl = '/storage/students/'.$name;
+            
+        } else {
+            $imageUrl =  '';
+        }
 
         $student = new Student;
         $student->first_name = $request->first_name;
         $student->last_name = $request->last_name;
         $student->father_id = $request->father_id;
         $student->section_id = $request->section_id;
+        $student->imageUrl = $imageUrl;
 
         $student->save();
 
@@ -84,7 +97,12 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $sections = Section::all();
-        return view('students.edit', ['student' => $student, 'sections' => $sections]);
+        $fathers = Father::all();
+        return view('students.edit', [
+                'student' => $student,
+                'sections' => $sections,
+                'fathers' => $fathers
+            ]);
     }
 
     /**
@@ -97,9 +115,10 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'string|max:255',
-            'email' => 'email|unique:students,email,' . $id,
-            'phone' => 'string|max:20',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'father_id' => 'required|numeric|max:255',
+            'section_id' => 'required|numeric|max:255',
         ]);
 
         $student = Student::find($id);

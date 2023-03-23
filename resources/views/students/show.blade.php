@@ -9,6 +9,7 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Image</th>
                 <th>Section</th>
                 <th>Actions</th>
             </tr>
@@ -17,6 +18,9 @@
                 <tr  class="table_row">
                     <td>{{ $student->first_name }}</td>
                     <td>{{ $student->last_name }}</td>
+                    <td>                       
+                        <img src="{{ asset('/storage/app'.$student->imageUrl) }}" alt="Image">                        
+                    </td>
                     <td>{{ $student->section_id }}</td>
                     <td>
                         <a href="{{ route('students.edit', $student->id) }}">Edit</a>

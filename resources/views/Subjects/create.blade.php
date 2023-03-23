@@ -23,6 +23,18 @@
             <x-input-error :messages="$errors->get('section_id')" class="mt-2" />
         </div>
 
+        <!-- teacher id -->
+        <div class="mt-4">
+        <label for="section_id">Teacher:</label>
+            <select name="teacher_id" id="teacher_id">
+                <option value=""></option>
+                @foreach($teachers as $teacher) 
+                    <option value="{{$teacher->id}}">{{ $teacher->first_name . ' '. $teacher->last_name }}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('teacher_id')" class="mt-2" />
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <x-primary-button class="ml-4">
                 {{ __('Create') }}

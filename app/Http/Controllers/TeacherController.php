@@ -77,7 +77,8 @@ class TeacherController extends Controller
     public function edit($id)
     {
         $teacher = Teacher::find($id);
-        return view('teachers.edit', ['teacher' => $teacher]);
+        $users = User::all();
+        return view('teachers.edit', ['teacher' => $teacher, 'users' => $users]);
     }
 
     /**
@@ -90,9 +91,10 @@ class TeacherController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'string|max:255',
-            'email' => 'email|unique:students,email,' . $id,
-            'phone' => 'string|max:20',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'user_id' => 'required|numeric|max:255',
         ]);
 
         $teacher = Teacher::find($id);

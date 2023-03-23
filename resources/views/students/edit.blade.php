@@ -30,6 +30,20 @@
             </select>
             <x-input-error :messages="$errors->get('section_id')" class="mt-2" />
         </div>
+
+        <!-- father id -->
+        <div class="mt-4">
+        <label for="father_id">Father Name:</label>
+            <select name="father_id" id="father_id">
+                <option value=""></option>
+                @foreach($fathers as $father) 
+                    <option value="{{$father->id}}">{{$father->first_name}}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('father_id')" class="mt-2" />
+        </div>
+
+
         <button type="submit" class="update_button">Update</button>
     </form>
 

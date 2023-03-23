@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subject;
 use App\Models\Section;
+use App\Models\Teacher;
 
 class SubjectController extends Controller
 {
@@ -27,7 +28,11 @@ class SubjectController extends Controller
     public function create()
     {
         $sections = Section::all();
-        return view('subjects.create' , ['sections' => $sections]);
+        $teachers = Teacher::all();
+        return view('subjects.create' , [
+            'sections' => $sections,
+            'teachers' => $teachers
+        ]);
     }
 
     /**
@@ -51,7 +56,7 @@ class SubjectController extends Controller
 
         $subject->save();
 
-        return redirect()->route('subjects.show', $student->id);
+        return redirect()->route('subjects.show', $subject->id);
     }
 
     /**
@@ -62,8 +67,8 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        $student = Subject::find($id);
-        return view('subjects.show', ['student' => $student]);
+        $subject = Subject::find($id);
+        return view('subjects.show', ['subject' => $subject]);
     }
 
     /**
@@ -74,8 +79,14 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        $student = Subject::find($id);
-        return view('subjects.edit', ['student' => $student]);
+        $subject = Subject::find($id);
+        $sections = Section::all();
+        $teachers = Teacher::all();
+        return view('subjects.edit', [
+            'subject' => $subject,
+            'sections' => $sections,
+            'teachers' => $teachers
+        ]);
     }
 
     /**

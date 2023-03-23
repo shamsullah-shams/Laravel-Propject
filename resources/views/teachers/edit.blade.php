@@ -34,6 +34,20 @@
                 <div>{{ $message }}</div>
             @enderror
         </div>
+
+
+        <!-- user id -->
+        <div class="mt-4">
+        <label for="user_id">User Email:</label>
+            <select name="user_id" id="user_id">
+                <option value=""></option>
+                @foreach($users as $user) 
+                    <option value="{{$user->id}}">{{$user->email}}</option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
+        </div>
+
         <button type="submit" class="update_button">Update</button>
     </form>
     <div class="Back_Button_div">
