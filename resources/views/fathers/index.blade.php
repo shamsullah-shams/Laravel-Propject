@@ -2,15 +2,15 @@
 @extends('./dashboard')
 
 @section('content')
-    <h1 class="header_title">Manage Parents</h1>
+    <h1 class="header_title">{{__('school.manage_parents')}}</h1>
     <table>
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone</th>
-                <th>province</th>
-                <th>Actions</th>
+                <th>{{__('school.first_name')}}</th>
+                <th>{{__('school.last_name')}}</th>
+                <th>{{__('school.phone')}}</th>
+                <th>{{__('school.province')}}</th>
+                <th>{{__('school.action')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
                     <td>{{ $father->phone }}</td>
                     <td>{{ $father->province }}</td>
                     <td>
-                        <a href="{{ route('fathers.show', $father->id) }}">View</a>
+                        <a href="{{ route('fathers.show', $father->id) }}">{{__('school.view')}}</a>
                     </td>
                 </tr>
             @endforeach
@@ -36,7 +36,7 @@
 
 
     <div class="Back_Button_div">
-        <a href="{{ route('fathers.create') }}" class="Back_Button">Add Parents</a>
+        <a href="{{ route('fathers.create') }}" class="Back_Button">{{__('school.add_parent')}}</a>
     </div>
     @endsection
     

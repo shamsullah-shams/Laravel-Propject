@@ -1,7 +1,7 @@
 @extends('./dashboard')
 
 @section('content')
-    <h1  class="header_title">Edit {{ $subject->name }} Subject</h1>
+    <h1  class="header_title">{{__('school.manage_subjects')}}</h1>
     <form action="{{ route('subjects.update', $subject->id) }}" method="POST"  class="Custom_Form">
         @csrf
         @method('PUT')
@@ -9,7 +9,7 @@
 
         <!-- name -->
         <div>
-            <label for="name">Name:</label>
+            <label for="name">{{__('school.name')}}:</label>
             <input class="edit_inputs" type="text" id="name" name="name" value="{{ old('name', $subject->name) }}">
             @error('name')
                 <div>{{ $message }}</div>
@@ -17,7 +17,7 @@
         </div>
                 <!-- section id -->
                 <div class="mt-4">
-        <label for="section_id">Section:</label>
+        <label for="section_id">{{__('school.section')}}:</label>
             <select name="section_id" id="section_id">
                 <option value=""></option>
                 @foreach($sections as $section) 
@@ -29,7 +29,7 @@
 
         <!-- teacher id -->
         <div class="mt-4">
-        <label for="section_id">Teacher:</label>
+        <label for="section_id">{{__('school.teacher')}}:</label>
             <select name="teacher_id" id="teacher_id">
                 <option value=""></option>
                 @foreach($teachers as $teacher) 
@@ -39,10 +39,10 @@
             <x-input-error :messages="$errors->get('teacher_id')" class="mt-2" />
         </div>
 
-        <button type="submit" class="update_button">Update</button>
+        <button type="submit" class="update_button">{{__('school.update')}}</button>
     </form>
     <div class="Back_Button_div">
-        <a href="{{ route('subjects.show', $subject->id) }}" class="Back_Button">Cancel</a>
+        <a href="{{ route('subjects.show', $subject->id) }}" class="Back_Button">{{__('school.cancel')}}</a>
     </div>
 @endsection
 

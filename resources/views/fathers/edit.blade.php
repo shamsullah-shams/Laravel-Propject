@@ -9,7 +9,7 @@
 
         <!-- first_name -->
         <div>
-            <label for="first_name">First Name:</label>
+            <label for="first_name">{{__('school.first_name')}}:</label>
             <input class="edit_inputs" type="text" id="first_name" name="first_name" value="{{ old('first_name', $father->first_name) }}">
             @error('first_name')
                 <div>{{ $message }}</div>
@@ -18,7 +18,7 @@
         
        <!-- Email Address -->
        <div class="mt-4">
-        <label for="first_name">Last Name:</label>
+        <label for="first_name">{{__('school.last_name')}}:</label>
             <input class="edit_inputs" type="text" id="last_name" name="last_name" value="{{ old('last_name', $father->last_name) }}">
             @error('last_name')
                 <div>{{ $message }}</div>

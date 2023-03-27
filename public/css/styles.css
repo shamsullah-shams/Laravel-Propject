@@ -40,7 +40,7 @@ select {
 }
 
 .Back_Button_div {
-    width: 200px;
+    width: 350px;
     margin: 10px auto;
 }
 
@@ -49,6 +49,7 @@ select {
     font-weight: bolder;
     font-size: larger;
     color: rgb(4, 4, 99);
+    margin: 10px auto;
 }
 
 table {
@@ -78,10 +79,10 @@ th {
 
 .update_button {
     width: 90%;
-    background-color: rgb(80, 80, 243);
+    background-color: rgb(80, 80, 243) !important;
     margin: 10px auto;
     text-align: center;
-    color: black;
+    color: white;
     padding: 8px 16px;
     border-radius: 20px;
     text-align: center;

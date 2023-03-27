@@ -7,16 +7,16 @@
         @csrf
         @method('PUT')
         <div>
-            <label for="name">Class Name:</label>
+            <label for="name">{{__('school.class_name')}}:</label>
             <input  class="edit_inputs" type="text" id="name" name="name" value="{{ old('name', $singleClass->name) }}">
             @error('name')
                 <div>{{ $message }}</div>
             @enderror
         </div>
-    <button type="submit" class="update_button">Update</button>
+    <button type="submit" class="update_button">{{__('school.update')}}</button>
     </form>
     <div class="Back_Button_div">
-        <a href="{{ route('classes.show', $singleClass->id) }}" class="Back_Button">Cancel</a>
+        <a href="{{ route('classes.show', $singleClass->id) }}" class="Back_Button">{{__('school.cancel')}}</a>
     </div>
 @endsection
 

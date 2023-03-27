@@ -2,17 +2,17 @@
 
 @section('content')
 
-    <h1 class="header_title">Manage Student</h1>
+    <h1 class="header_title">{{__('school.manage_students')}}</h1>
     
     <table>
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Father Name</th>
-                <th>Image</th>
-                <th>Section</th>
-                <th>Actions</th>
+                <th>{{__('school.first_name')}}</th>
+                <th>{{__('school.last_name')}}</th>
+                <th>{{__('school.father_name')}}</th>
+                <th>{{__('school.image')}}</th>
+                <th>{{__('school.section')}}</th>
+                <th>{{__('school.action')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -25,17 +25,17 @@
                     </td>
                     <td>{{ $student->section->name }}</td>
                     <td>
-                        <a href="{{ route('students.edit', $student->id) }}">Edit</a>
+                        <a href="{{ route('students.edit', $student->id) }}">{{__('school.edit')}}</a>
                         <form action="{{ route('students.destroy', $student->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
+                            <button type="submit">{{__('school.delete')}}</button>
                         </form>
                     </td>
                 </tr>
         </tbody>
     </table>
     <div class="Back_Button_div">
-        <a href="{{ route('students.index') }}" class="Back_Button">Back</a>
+        <a href="{{ route('students.index') }}" class="Back_Button">{{__('school.back')}}</a>
     </div>
 @endsection

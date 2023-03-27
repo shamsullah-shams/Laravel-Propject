@@ -6,28 +6,28 @@
 
         <!-- first_name -->
         <div>
-            <label for="first_name">First Name:</label>
+            <label for="first_name">{{__('school.first_name')}}:</label>
             <input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')"  autofocus autocomplete="first_name" />
             <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
         </div>
 
         <!-- last_name -->
         <div>
-            <label for="last_name">last Name :</label>
+            <label for="last_name">{{__('school.last_name')}} :</label>
             <input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')"  autofocus autocomplete="last_name" />
             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
         </div>
 
         <!-- phone -->
         <div>
-            <label for="phone">Phone :</label>
+            <label for="phone">{{__('school.phone')}} :</label>
             <input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"  autofocus autocomplete="phone" />
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
         <!-- province  -->
         <div class="mt-4">
-        <label for="province">Province:</label>
+        <label for="province">{{__('school.province')}}:</label>
             <select name="province" id="province">
                 <option value=""></option>
                 <option value="Badakhshan">Badakhshan</option>
@@ -67,15 +67,11 @@
             <x-input-error :messages="$errors->get('province')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
+        <button type="submit" class="update_button">{{__('school.register')}}</button>
     </form>
 
     <div class="Back_Button_div">
-        <a href="{{ route('fathers.index') }}" class="Back_Button">Back</a>
+        <a href="{{ route('fathers.index') }}" class="Back_Button">{{__('school.back')}}</a>
     </div>
 @endsection
 

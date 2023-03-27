@@ -26,7 +26,7 @@
                 <div>{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit">Update</button>
+        <button type="submit" class="update_button">{{__('school.register')}}</button>
     </form>
     <a href="{{ route('students.show', $student->id) }}">Cancel</a>
 @endsection

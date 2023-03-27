@@ -1,12 +1,12 @@
 @extends('./dashboard')
 
 @section('content')
-<h1 class="header_title">Manage Sections</h1>
+<h1 class="header_title">{{__('school.manage_sections')}}</h1>
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Class Name</th>
+                <th>{{__('school.name')}}</th>
+                <th>{{__('school.action')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +14,7 @@
                 <tr  class="table_row">
                     <td>{{ $section->name }}</td>
                     <td>
-                        <a href="{{ route('sections.show', $section->id) }}">View</a>
+                        <a href="{{ route('sections.show', $section->id) }}">{{__('school.view')}}</a>
                     </td>
                 </tr>
             @endforeach
@@ -32,6 +32,6 @@
 
 
     <div class="Back_Button_div">
-        <a href="{{ route('sections.create') }}" class="Back_Button">Add Section</a>
+        <a href="{{ route('sections.create') }}" class="Back_Button">{{__('school.add_section')}}</a>
     </div>
 @endsection

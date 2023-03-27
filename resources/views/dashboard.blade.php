@@ -3,14 +3,14 @@
         <!-- <h2 class="font-semibold text-xl text-gray-800 leading-tight"> -->
     
         <div class="customNavigation"> 
-            <a href="{{ route('users.index') }}">Users</a>
-            <a href="{{ route('teachers.index') }}">Teachers</a>
-            <a href="{{ route('fathers.index') }}">Parents </a>
-            <a href="{{ route('students.index') }}" > Students</a>
-            <a href="{{ route('classes.index') }}">Classes </a>
-            <a href="{{ route('sections.index') }}">Sections </a>
-            <a href="{{ route('subjects.index') }}">Subjects </a>
-            <a href="{{ route('attendance.index') }}">Attendance </a>
+            <a href="{{ route('users.index') }}">{{__('school.users')}}</a>
+            <a href="{{ route('teachers.index') }}">{{__('school.teachers')}}</a>
+            <a href="{{ route('fathers.index') }}">{{__('school.parents')}} </a>
+            <a href="{{ route('students.index') }}" > {{__('school.students')}}</a>
+            <a href="{{ route('classes.index') }}">{{__('school.classes')}} </a>
+            <a href="{{ route('sections.index') }}">{{__('school.sections')}} </a>
+            <a href="{{ route('subjects.index') }}">{{__('school.subjects')}} </a>
+            <a href="{{ route('attendance.index') }}">{{__('school.attendance')}} </a>
         </div>
         
         

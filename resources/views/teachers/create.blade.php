@@ -6,21 +6,21 @@
 
         <!-- first_name -->
         <div>
-            <label for="first_name">First Name:</label>
+            <label for="first_name">{{__('school.first_name')}}:</label>
             <input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')"  autofocus autocomplete="first_name" />
             <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
-        <label for="first_name">Last Name:</label>
+        <label for="first_name">{{__('school.last_name')}}:</label>
             <input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')"  autocomplete="last_name" />
             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-        <label for="first_name">Phone Number:</label>
+        <label for="first_name"> {{__('school.phone')}}:</label>
 
             <input id="phone" class="block mt-1 w-full"
                             type="text"
@@ -31,7 +31,7 @@
         </div>
         <!-- user id -->
         <div class="mt-4">
-        <label for="user_id">User Email:</label>
+        <label for="user_id">{{__('school.email')}}:</label>
             <select name="user_id" id="user_id">
                 <option value=""></option>
                 @foreach($users as $user) 
@@ -41,14 +41,10 @@
             <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="ml-4" class="update_button">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
+        <button type="submit" class="update_button">{{__('school.register')}}</button>
     </form>
     <div class="Back_Button_div">
-        <a href="{{ route('teachers.index') }}" class="Back_Button">Back</a>
+        <a href="{{ route('teachers.index') }}" class="Back_Button">{{__('school.phone')}}</a>
     </div>
 @endsection
 
