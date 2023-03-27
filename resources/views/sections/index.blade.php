@@ -20,6 +20,17 @@
             @endforeach
         </tbody>
     </table>
+
+
+    <div class='pagination'>
+        <div class='class_for_margin'>
+            {!! $sections->withQueryString()->links('pagination::bootstrap-5') !!}
+        </div>
+    </div>
+
+
+
+
     <div class="Back_Button_div">
         <a href="{{ route('sections.create') }}" class="Back_Button">Add Section</a>
     </div>

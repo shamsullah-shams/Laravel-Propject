@@ -9,6 +9,7 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Father Name</th>
                 <th>Image</th>
                 <th>Section</th>
                 <th>Actions</th>
@@ -18,10 +19,11 @@
                 <tr  class="table_row">
                     <td>{{ $student->first_name }}</td>
                     <td>{{ $student->last_name }}</td>
-                    <td>                       
-                        <img src="{{ asset('/storage/app'.$student->imageUrl) }}" alt="Image">                        
+                    <td>{{ $student->father->first_name. ' '. $student->father->last_name }}</td>
+                    <td class="image_td">                       
+                        <img src="{{ asset($student->imageUrl) }}" alt="Image">                        
                     </td>
-                    <td>{{ $student->section_id }}</td>
+                    <td>{{ $student->section->name }}</td>
                     <td>
                         <a href="{{ route('students.edit', $student->id) }}">Edit</a>
                         <form action="{{ route('students.destroy', $student->id) }}" method="POST">

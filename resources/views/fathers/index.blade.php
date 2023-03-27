@@ -27,6 +27,14 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class='pagination'>
+        <div class='class_for_margin'>
+            {!! $fathers->withQueryString()->links('pagination::bootstrap-5') !!}
+        </div>
+    </div>
+
+
     <div class="Back_Button_div">
         <a href="{{ route('fathers.create') }}" class="Back_Button">Add Parents</a>
     </div>

@@ -16,7 +16,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = Student::paginate(5);
         return view('students.index', ['students' => $students]);
     }
 
@@ -83,8 +83,12 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $student = Student::find($id);
-        return view('students.show', ['student' => $student]);
+        // $student = Student::find($id);
+        $student = Student::with('father', 'section')->find($id);
+
+        return view('students.show', [
+            'student' => $student,
+        ]);
     }
 
     /**

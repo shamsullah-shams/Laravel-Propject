@@ -15,7 +15,7 @@ class FatherController extends Controller
      */
     public function index()
     {
-        $fathers = Father::all();
+        $fathers = Father::paginate(5);
         return view('fathers.index', ['fathers' => $fathers]);
     }
 

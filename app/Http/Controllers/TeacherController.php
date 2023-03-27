@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class TeacherController extends Controller
@@ -15,8 +16,12 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::paginate(5);
         return view('teachers.index', ['teachers' => $teachers]);
+
+        // return view('teachers.index', [
+        //     'teachers' => DB::table('teachers')->paginate(15)
+        // ]);
     }
 
     /**
