@@ -23,7 +23,17 @@
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
                 </div>
+                <div>
+                    <form action="{{ route('submit-form') }}" method="POST">
+                        @csrf
+                        <select name="locale" onchange="this.form.submit()">
+                            <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                            <option value="ps" {{ app()->getLocale() == 'ps' ? 'selected' : '' }}>Pashto</option>
+                        </select>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
 </x-app-layout>

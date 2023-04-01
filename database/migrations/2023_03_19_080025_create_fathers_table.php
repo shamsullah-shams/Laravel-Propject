@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('province');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

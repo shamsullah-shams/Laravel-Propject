@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Father;
+use App\Models\Teacher;
+use App\Models\Student;
+use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -13,7 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::paginate(5);
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -23,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.register');
     }
 
     /**
@@ -80,5 +86,23 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getSoftDeleteRows()
+    {
+        $students = Student::onlyTrashed()->get();
+        $teachers = Teacher::onlyTrashed()->get();
+        $parents = Father::onlyTrashed()->get();
+        return view('trash', [
+            'teachers' => $teachers,
+            'students' => $students,
+            'fathers' => $parents,
+        ]);
     }
 }

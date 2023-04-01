@@ -45,6 +45,7 @@ return [
     'add_subject' => 'مضمون اضافه کړی',
     'subject_name' => 'د مضمون نوم',
     'users' => 'یوزران',
+    'clear_trash' => 'ټرش پاک کړی',
 ];
 
 

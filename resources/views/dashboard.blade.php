@@ -11,6 +11,7 @@
             <a href="{{ route('sections.index') }}">{{__('school.sections')}} </a>
             <a href="{{ route('subjects.index') }}">{{__('school.subjects')}} </a>
             <a href="{{ route('attendance.index') }}">{{__('school.attendance')}} </a>
+            <a href="trash">{{__('school.trash')}} </a>
         </div>
         
         

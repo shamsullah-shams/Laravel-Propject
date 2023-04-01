@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('father_id')->constrained('fathers')->onDelete('cascade');
             $table->string('imageUrl');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

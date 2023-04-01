@@ -34,7 +34,8 @@ return [
     'view' => 'View',
     'update' => 'Update',
     'cancel' => 'Cancel',
-    'phone' => 'Phone Number','name' => 'نوم',
+    'phone' => 'Phone Number',
+    'name' => 'Name',
     'status' => 'Status',
     'email' => 'Email',
     'province' => 'Province',
@@ -44,6 +45,10 @@ return [
     'add_subject' => 'Add Subject',
     'subject_name' => 'Subject Name',
     'users' => 'Users',
+    'clear_trash' => 'Clear Trash',
+    'trash_message' => 'TRASH IS EMPTY',
+    'trash' => 'Trash',
+    'add_user' => 'Register New User',
 ];
 
 
