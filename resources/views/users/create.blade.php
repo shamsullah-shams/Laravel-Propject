@@ -1,8 +1,10 @@
+@extends('./dashboard')
+
+@section('content')
 
     <x-guest-layout>
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('users.store') }}">
             @csrf
-
             <!-- Name -->
             <div>
                 <x-input-label for="name" :value="__('Name')" />
@@ -42,3 +44,4 @@
             <button type="submit" class="update_button">{{__('school.register')}}</button>
         </form>
     </x-guest-layout>
+@endsection

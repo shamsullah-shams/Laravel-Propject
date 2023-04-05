@@ -24,11 +24,12 @@
                     @include('profile.partials.delete-user-form')
                 </div>
                 <div>
-                    <form action="{{ route('submit-form') }}" method="POST">
+                    <form action="{{ route('language') }}" method="POST">
                         @csrf
                         <select name="locale" onchange="this.form.submit()">
-                            <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
-                            <option value="ps" {{ app()->getLocale() == 'ps' ? 'selected' : '' }}>Pashto</option>
+                            <option></option>
+                            <option value="en">English</option>
+                            <option value="ps">Pashto</option>
                         </select>
                     </form>
                 </div>

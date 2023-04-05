@@ -10,6 +10,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\ChatController;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Father;
@@ -33,71 +34,63 @@ Route::get('/', function () {
 
 
 
+
+
 Route::get('/register', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 
 
 
 Route::middleware('auth')->group(function () {
     
-    // trash route
-    Route::get('/trash' , [UserController::class , 'getSoftDeleteRows']);
+    Route::middleware('language-middleware')->group(function() {
+        
+        Route::post('/submitform',[ChatController::class,'submitform'])->name('submitform');
+        Route::post('/uploadFile',[ChatController::class,'uploadFile'])->name('uploadFile');
+        // dashboard route
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->middleware(['auth', 'verified'])->name('dashboard');
+
+        // trash route
+        Route::get('/trash' , [UserController::class , 'getSoftDeleteRows']);
 
 
-    // resource controllers 
-    Route::resource('fathers', FatherController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('sections', SectionController::class);
-    Route::resource('subjects', SubjectController::class);
-    Route::resource('teachers', TeacherController::class);
-    Route::resource('attendance', AttendanceController::class);
-    Route::resource('classes', ClassController::class);
-    Route::resource('students', StudentController::class);
-
-    //  trash clear route
-    Route::get('/trash-clear', function () {
-        Father::onlyTrashed()->forceDelete();
-        Teacher::onlyTrashed()->forceDelete();
-        Student::onlyTrashed()->forceDelete();
+        
+        
+        // resource controllers 
+        Route::resource('fathers', FatherController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('sections', SectionController::class);
+        Route::resource('subjects', SubjectController::class);
+        Route::resource('teachers', TeacherController::class);
+        Route::resource('attendance', AttendanceController::class);
+        Route::resource('classes', ClassController::class);
+        Route::resource('students', StudentController::class);
+        Route::resource('chats', ChatController::class);
     
-        return redirect()->back()->with('success', 'All soft-deleted rows have been permanently deleted.');
-    })->name('trash.clear');
+        //  trash clear route
+        Route::get('/trash-clear', function () {
+            Father::onlyTrashed()->forceDelete();
+            Teacher::onlyTrashed()->forceDelete();
+            Student::onlyTrashed()->forceDelete();
+        
+            return redirect()->back()->with('success', 'All soft-deleted rows have been permanently deleted.');
+        })->name('trash.clear');
+
+    });
+    
 
 
 
     // localization route
-    // Route::get('/language/{locale}', function ($locale) {
-    //     session()->put('locale', $locale);
-    //     return back();
-    // })->name('language');
-
-
-    
-    Route::post('/submit-form', function (Request $request) {
+    Route::post('/language', function (Request $request) {
         $locale = $request->locale;
-        session(['locale' => $locale]);
-        return back();
+        session()->put('locale', $locale);
+        return redirect('dashboard');
+    })->name('language');
 
-    })->name('submit-form');
-    
-
-    // localization route
-
-    // Route::post('/setLanguage', function(Request $request) {
-    //     $language = $request->input('language');
-    //     if (!in_array($language, ['en', 'ps'])) {
-    //         abort(400, 'Invalid language');
-    //     }
-    //     // app()->setLocale($language);
-    //     App::setLocale($language);
-    //     return redirect()->route('dashboard');
-    // })->name('setLanguage');
     
     
     
