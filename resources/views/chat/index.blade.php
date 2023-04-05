@@ -10,7 +10,7 @@
     @foreach ($chats as $chat)
 
         <label for="">Name : </label>
-        <span>{{ $chat->subject }}</span>
+        <span>{{ $chat->name }}</span>
         <br>
         <label for="">Message : </label>
         <span>{!! $chat->message !!}</span>
