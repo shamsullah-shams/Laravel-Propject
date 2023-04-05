@@ -46,6 +46,9 @@ return [
     'subject_name' => 'د مضمون نوم',
     'users' => 'یوزران',
     'clear_trash' => 'ټرش پاک کړی',
+    'trash_message' => 'ټرش خالی دی',
+    'trash' => 'ټرش',
+    'add_user' => 'نوی یوزر ثبت کړی',
 ];
 
 
